@@ -18,7 +18,7 @@ export function SiteHeader() {
     const update = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(scrollable > 0 ? Math.round(window.scrollY / scrollable * 100) : 0);
-      const position = window.scrollY + Math.min(window.innerHeight * 0.35, 240);
+      const position = window.scrollY + window.innerHeight * 0.5;
       let current = "home";
       for (const item of navigation) {
         const section = document.getElementById(item.id);
