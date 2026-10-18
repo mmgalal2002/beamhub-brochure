@@ -1,4 +1,5 @@
 import {
+  ArrowDown,
   ArrowUpRight,
   BookOpen,
   ClipboardList,
@@ -6,12 +7,14 @@ import {
   Heart,
   Lightbulb,
   Network,
+  Play,
   Users,
   Video,
   type LucideIcon,
 } from "lucide-react";
 import { BeamMark, Wordmark } from "@/components/brand";
 import { CourseExplorer } from "@/components/course-explorer";
+import { CoursePreviewButton } from "@/components/course-preview";
 import { ListeningRoom } from "@/components/listening-room";
 import { ExperienceProvider } from "@/components/experience-provider";
 import { ExternalLink } from "@/components/external-link";
@@ -67,33 +70,27 @@ export default function Home() {
       <a href="#main-content" className="skip-link">Skip to content</a>
       <SiteHeader />
       <main id="main-content" tabIndex={-1}>
-        <section id="home" className="hero-section" tabIndex={-1} aria-labelledby="hero-heading">
-          <div className="container hero-layout">
-            <div className="hero-copy">
-              <p className="eyebrow hero-eyebrow"><span className="status-dot" /> A BRIGHTER FUTURE FOR RADIATION MEDICINE</p>
-              <h1 id="hero-heading">
-                <span>Great minds.</span>
-                <em>Brighter</em>
-                <span>medicine.</span>
-              </h1>
-              <p className="hero-lead">A home for the people moving radiation medicine forward. Learn from experts, share what you know, and turn curiosity into possibility.</p>
-              <div className="hero-actions">
+        <section id="home" className="hero-section hero-section--immersive" tabIndex={-1} aria-labelledby="hero-heading">
+          <HeroVisual />
+          <div className="hero-content">
+            <div className="hero-intro">
+              <p className="hero-kicker"><span aria-hidden="true" /> THE RADIATION MEDICINE COMMUNITY</p>
+              <h1 id="hero-heading" className="hero-name">BeamHub<span>.</span></h1>
+              <p className="hero-tagline"><span>Great minds.</span><em>Brighter medicine.</em></p>
+              <p className="hero-description">Learn from experts. Find your people.<br />Move radiation medicine forward.</p>
+              <div className="hero-cta">
                 <ExternalLink href={beamHubLinks.introduction} className="button button-orange">
                   Discover BeamHub <ArrowUpRight size={19} aria-hidden="true" />
                 </ExternalLink>
-              </div>
-              <div className="hero-proof">
-                <span className="discipline-tokens" aria-hidden="true"><i>P</i><i>D</i><i>E</i><i>+</i></span>
-                <p><strong>Different minds. Shared ambition.</strong><span>For professionals, students and the endlessly curious.</span></p>
+                <CoursePreviewButton courseId="shielding" className="hero-preview-link" aria-label="Preview a course" title="Preview a course">
+                  <span className="hero-preview-icon"><Play size={14} fill="currentColor" aria-hidden="true" /></span><span className="hero-preview-label">Preview a course</span>
+                </CoursePreviewButton>
               </div>
             </div>
-
-            <HeroVisual />
           </div>
-          <div className="container hero-bottom">
-            <span>LEARN. CONNECT. ADVANCE.</span>
-            <span>THE STORY STARTS WITH YOU</span>
-            <span>BEAMHUB / THE FIELD GUIDE</span>
+          <div className="hero-footer">
+            <p><span className="hero-community-mark" aria-hidden="true"><BeamMark /></span><strong>80+ countries.</strong> One community.</p>
+            <a href="#vision">Explore the field guide <ArrowDown size={17} aria-hidden="true" /></a>
           </div>
         </section>
 
