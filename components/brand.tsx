@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function BeamMark({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -21,11 +23,20 @@ export function BeamMark({ className = "" }: { className?: string }) {
   );
 }
 
-export function Wordmark() {
+export function Wordmark({
+  tone = "dark",
+  className = "",
+}: {
+  tone?: "dark" | "light";
+  className?: string;
+}) {
   return (
-    <span className="wordmark">
-      <span>beam<span className="wordmark-hub">hub</span></span>
-      <BeamMark className="wordmark-symbol" />
-    </span>
+    <Image
+      src={tone === "light" ? "/beamhubLogo.svg" : "/beamhubLogo-dark.svg"}
+      alt="BeamHub.org"
+      width={160}
+      height={56}
+      className={`wordmark-logo ${className}`.trim()}
+    />
   );
 }
