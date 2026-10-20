@@ -32,7 +32,7 @@ export function LearningPath() {
           </div>
         </div>
         <div className="path-card" key={selectedId}>
-          <div className="path-card-topline"><Compass size={21} aria-hidden="true" /><span>A LITTLE DIRECTION</span><span>01 / 03</span></div>
+          <div className="path-card-topline"><Compass size={21} aria-hidden="true" /><span>A LITTLE DIRECTION</span><span>01 / {String(path.courseIds.length).padStart(2, "0")}</span></div>
           <p className="path-persona" aria-live="polite" aria-atomic="true">A starting point for: {path.label}</p>
           <h3>{path.title}</h3>
           <p className="path-description">{path.description}</p>
