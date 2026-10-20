@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { siteDescription, siteTitle, siteUrl } from "@/lib/seo";
 import "./globals.css";
 import "./experience.css";
 import "./features.css";
@@ -23,21 +24,41 @@ const dmSans = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3100"),
-  title: "BeamHub | Great minds. Brighter medicine.",
-  description:
-    "Discover BeamHub: a global radiation medicine community for expert-led learning, shared knowledge and professional growth. Find your next learning chapter.",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  applicationName: "BeamHub",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "BeamHub field guide",
-    title: "Great minds. Brighter medicine.",
-    description:
-      "A home for the people moving radiation medicine forward. Learn, connect and discover your next chapter with BeamHub.",
+    siteName: "BeamHub",
+    locale: "en_US",
+    url: siteUrl,
+    title: siteTitle,
+    description: siteDescription,
   },
   twitter: {
     card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : undefined,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
