@@ -12,9 +12,10 @@ import {
   podcastSpotlight,
 } from "../lib/beamhub.ts";
 
-test("the featured catalogue has six unique, sourced learning spaces", () => {
-  assert.equal(courses.length, 6);
-  assert.equal(new Set(courses.map((course) => course.id)).size, 6);
+test("the featured catalogue has three unique, sourced learning spaces", () => {
+  assert.equal(courses.length, 3);
+  assert.deepEqual(courses.map((course) => course.id), ["shielding", "linac", "gamper"]);
+  assert.equal(new Set(courses.map((course) => course.id)).size, 3);
   for (const course of courses) {
     assert.equal(new URL(course.source).hostname, "www.beamhub.org");
     assert.ok(course.officialTitle);
@@ -25,35 +26,36 @@ test("the featured catalogue has six unique, sourced learning spaces", () => {
 });
 
 test("an empty or whitespace-only query returns the selected category", () => {
-  assert.equal(filterCourses("all", "").length, 6);
-  assert.equal(filterCourses("all", "   ").length, 6);
+  assert.equal(filterCourses("all", "").length, 3);
+  assert.equal(filterCourses("all", "   ").length, 3);
   assert.deepEqual(
     filterCourses("protection", " ").map((course) => course.id),
-    ["shielding", "physics"],
+    ["shielding"],
   );
 });
 
 test("category counts match the real featured catalogue", () => {
-  const expected = { all: 6, protection: 2, engineering: 1, radiotherapy: 2, anatomy: 1 };
+  const expected = { all: 3, protection: 1, engineering: 1, radiotherapy: 1 };
   for (const category of learningCategories) {
     assert.equal(filterCourses(category.id, "").length, expected[category.id]);
   }
 });
 
-test("search is case-insensitive and matches official titles, focus and facts", () => {
+test("search is case-insensitive and excludes temporarily hidden courses", () => {
   assert.deepEqual(filterCourses("all", "  sBrT  ").map((course) => course.id), ["gamper"]);
-  assert.deepEqual(filterCourses("all", "sample").map((course) => course.id), ["physics"]);
   assert.deepEqual(
     filterCourses("all", "certificate").map((course) => course.id),
     ["shielding"],
   );
-  assert.deepEqual(filterCourses("all", "MRI").map((course) => course.id), ["anatomy"]);
+  assert.deepEqual(filterCourses("all", "Eclipse"), []);
+  assert.deepEqual(filterCourses("all", "Radiology Anatomy"), []);
+  assert.deepEqual(filterCourses("all", "Radiation Physics: A First Look"), []);
 });
 
 test("search combines words and respects the selected category", () => {
   assert.deepEqual(filterCourses("all", "linac safety").map((course) => course.id), ["shielding", "linac"]);
   assert.deepEqual(filterCourses("engineering", "linac safety").map((course) => course.id), ["linac"]);
-  assert.equal(filterCourses("anatomy", "shielding").length, 0);
+  assert.equal(filterCourses("radiotherapy", "shielding").length, 0);
   assert.equal(filterCourses("all", "not-a-real-course").length, 0);
 });
 
@@ -69,9 +71,7 @@ test("role suggestions always resolve to real, unique courses", () => {
 
 test("published curriculum facts remain accurate", () => {
   assert.ok(getCourse("linac").facts.includes("20 lessons"));
-  assert.ok(getCourse("eclipse").facts.includes("48 lessons"));
-  assert.ok(getCourse("anatomy").facts.includes("34 lessons"));
-  assert.ok(getCourse("physics").facts.includes("10 lessons"));
+  assert.ok(getCourse("shielding").facts.includes("Over 3 hours of recorded content"));
   assert.ok(getCourse("shielding").facts.includes("Completion certificate on request"));
   assert.equal(getCourse("gamper").metric, "SBRT & SRS");
 });
