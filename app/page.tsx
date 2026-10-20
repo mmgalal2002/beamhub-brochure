@@ -31,6 +31,40 @@ import {
   publishedStats,
   sourceDate,
 } from "@/lib/beamhub";
+import { siteDescription, siteTitle, siteUrl } from "@/lib/seo";
+
+const organizationId = new URL("/#organization", beamHubLinks.introduction).href;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: "BeamHub",
+      url: new URL("/", beamHubLinks.introduction).href,
+      sameAs: [beamHubLinks.linkedin, beamHubLinks.youtube],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      url: siteUrl,
+      name: "BeamHub",
+      alternateName: "BeamHub Brochure",
+      description: siteDescription,
+      inLanguage: "en",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}#webpage`,
+      url: siteUrl,
+      name: siteTitle,
+      description: siteDescription,
+      inLanguage: "en",
+      isPartOf: { "@id": `${siteUrl}#website` },
+      about: { "@id": organizationId },
+    },
+  ],
+};
 
 const spaceIcons: Record<(typeof moreSpaces)[number]["id"], LucideIcon> = {
   courses: GraduationCap,
@@ -67,6 +101,13 @@ const principles = [
 export default function Home() {
   return (
     <ExperienceProvider>
+      <script
+        id="beamhub-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <a href="#main-content" className="skip-link">Skip to content</a>
       <SiteHeader />
       <main id="main-content" tabIndex={-1}>
@@ -77,7 +118,7 @@ export default function Home() {
               <p className="hero-kicker"><span aria-hidden="true" /> THE RADIATION MEDICINE COMMUNITY</p>
               <h1 id="hero-heading" className="hero-name">BeamHub<span>.</span></h1>
               <p className="hero-tagline"><span>Great minds.</span><em>Brighter medicine.</em></p>
-              <p className="hero-description">Learn from experts. Find your people.<br />Move radiation medicine forward.</p>
+              <p className="hero-description">Expert-led courses, shared knowledge and a global community for medical physics, radiotherapy and clinical engineering.</p>
               <div className="hero-cta">
                 <ExternalLink href={beamHubLinks.introduction} className="button button-orange">
                   Discover BeamHub <ArrowUpRight size={19} aria-hidden="true" />
