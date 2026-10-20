@@ -57,7 +57,7 @@ These changes make the brochure crawlable and provide consistent search signals.
 - Three original, locally hosted motion films in a sliding carousel with sequential playback, pause/resume, clip selection, swipe navigation and fullscreen controls.
 - A distinctive podcast listening room: oversized editorial typography, a tactile record sleeve and a keyboard-accessible source dial exploring articles, books and insights.
 - A mission chapter centered on collaboration, knowledge exchange and patient care.
-- Six featured learning spaces with subject filters, text search, empty states and accessible curriculum-preview dialogs.
+- Three featured learning spaces with subject filters, text search, empty states and accessible curriculum-preview dialogs.
 - All ten ecosystem areas presented on BeamHub's public introduction: courses, YouTube collections, knowledge groups, events, Journal Club, jobs, podcasts, surveys, organizers/instructors and discovery.
 - Four interactive role-based starting points opening a shared curriculum preview.
 - A global-community chapter and direct links to BeamHub, LinkedIn, YouTube and the official contact address.
@@ -89,14 +89,16 @@ The chapter is based on that verified description. Its three source types are no
 
 The previous Maidstone spotlight and its duplicate machine/curriculum design were removed. Podcasts were moved out of the section-04 shortcut list into this dedicated chapter so the destination and content are not repeated. The other chapters keep their existing layouts.
 
-| Brochure title | Official learning space | Verified public details |
-| --- | --- | --- |
-| LINAC Shielding Design | [Shielding Design for Linear Accelerator - self-paced Course](https://www.beamhub.org/c/shielding-design-for-linear-accelerator-self-paced-course) | Over 3 hours of recorded content; assessments; completion certificate available on request |
-| Maidstone Linac Engineering | [Maidstone Linac Engineering](https://www.beamhub.org/c/linac-engineering-course) | 10 sections, 20 lessons, 1 hr 33 min of listed content |
-| Eclipse Dosimetry & Planning | [Eclipse Treatment planning Dosimetry Guide](https://www.beamhub.org/c/dosimetry-and-planning-courses) | 9 sections, 48 lessons |
-| Radiology Anatomy Tutorials | [Radiology Anatomy Tutorials](https://www.beamhub.org/c/radiology-tutorials) | 6 sections, 34 lessons |
-| Radiation Physics: A First Look | [Sample Course](https://www.beamhub.org/c/basic-physics) | 5 sections, 10 lessons; X-ray production, interactions and measurement |
-| GAMPER Masterclass | [GAMPER Masterclass](https://www.beamhub.org/c/gamper-masterclass) | Public description identifies an SBRT/SRS masterclass covering physics, planning, QA, guidance and clinical implementation |
+The featured catalogue currently presents three learning spaces. Eclipse Dosimetry & Planning, Radiology Anatomy Tutorials and Radiation Physics: A First Look are temporarily hidden from the page and role suggestions; their source notes remain here.
+
+| Course | Page status | Official learning space | Verified public details |
+| --- | --- | --- | --- |
+| LINAC Shielding Design | Featured | [Shielding Design for Linear Accelerator - self-paced Course](https://www.beamhub.org/c/shielding-design-for-linear-accelerator-self-paced-course) | Over 3 hours of recorded content; assessments; completion certificate available on request |
+| Maidstone Linac Engineering | Featured | [Maidstone Linac Engineering](https://www.beamhub.org/c/linac-engineering-course) | 10 sections, 20 lessons, 1 hr 33 min of listed content |
+| Eclipse Dosimetry & Planning | Temporarily hidden | [Eclipse Treatment planning Dosimetry Guide](https://www.beamhub.org/c/dosimetry-and-planning-courses) | 9 sections, 48 lessons |
+| Radiology Anatomy Tutorials | Temporarily hidden | [Radiology Anatomy Tutorials](https://www.beamhub.org/c/radiology-tutorials) | 6 sections, 34 lessons |
+| Radiation Physics: A First Look | Temporarily hidden | [Sample Course](https://www.beamhub.org/c/basic-physics) | 5 sections, 10 lessons; X-ray production, interactions and measurement |
+| GAMPER Masterclass | Featured | [GAMPER Masterclass](https://www.beamhub.org/c/gamper-masterclass) | Public description identifies an SBRT/SRS masterclass covering physics, planning, QA, guidance and clinical implementation |
 
 Display titles are editorially shortened where useful. The original title is shown in the course dialog when it differs.
 
