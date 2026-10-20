@@ -22,7 +22,9 @@ npm run build
 npm run start -- --hostname 127.0.0.1 --port 3100
 ```
 
-Use a different free port if 3100 is already occupied. When building for a different local port, set `SITE_URL` to the matching local origin first so social-image links use the correct preview. Set `SITE_URL` to your actual brochure origin when deploying; it defaults to `http://localhost:3100` for local social-image metadata.
+Use a different free port if 3100 is already occupied. Canonical links, social-sharing images, structured data and crawl endpoints default to the public brochure origin, **https://beambrochure.procare.expert/**, including during local previews. This prevents a deployment from accidentally advertising localhost to search engines.
+
+Only set `SITE_URL` if deploying the brochure to a different public HTTPS origin, then rebuild:
 
 ```powershell
 $env:SITE_URL = 'https://your-brochure-domain.com'
@@ -31,9 +33,26 @@ npm run build
 
 Do not set `SITE_URL` to BeamHub's official domain unless this brochure is actually deployed there. Enrollment, account access and payments remain on the official BeamHub site.
 
+## Search-engine discovery
+
+- Brand-first titles and descriptions identify BeamHub's radiation medicine, medical physics and radiotherapy learning community.
+- The canonical URL, Open Graph URL, generated sharing image and JSON-LD all use the same production origin. Invalid `SITE_URL` values, including localhost, HTTP, credentials and non-root paths, fail explicitly.
+- [app/robots.ts](./app/robots.ts) allows public crawling and advertises the sitemap. [app/sitemap.ts](./app/sitemap.ts) lists the single canonical page; brochure chapter anchors are not separate pages.
+- Server-rendered `WebSite`, `WebPage` and `Organization` structured data connects this brochure to the official BeamHub platform and its published social profiles without claiming that the brochure hosts accounts or enrollment.
+- Optional `GOOGLE_SITE_VERIFICATION` and `BING_SITE_VERIFICATION` environment variables emit ownership-verification meta tags. Set the token values supplied by the respective webmaster tools, not complete HTML tags, and rebuild. DNS verification can be used instead.
+
+After deploying:
+
+1. Confirm that [robots.txt](https://beambrochure.procare.expert/robots.txt) and [sitemap.xml](https://beambrochure.procare.expert/sitemap.xml) return HTTP 200 without login or deployment protection.
+2. Verify the domain in [Google Search Console](https://search.google.com/search-console) and [Bing Webmaster Tools](https://www.bing.com/webmasters/).
+3. Submit `https://beambrochure.procare.expert/sitemap.xml` in both tools, then inspect the homepage URL and request indexing.
+4. Link to the brochure from the official BeamHub website and relevant public profiles so crawlers can discover it naturally.
+
+These changes make the brochure crawlable and provide consistent search signals. Indexing timing and ranking for "BeamHub" are controlled by each search engine; neither immediate indexing nor a particular position can be guaranteed.
+
 ## The experience
 
-- A pointer-reactive editorial cover with original scientific illustrations, orbital motion and a featured course preview.
+- A full-viewport editorial cover with fluid, oversized brand typography, clearer subject copy, larger calls to action, pointer-reactive scenes and a featured course preview. Mobile and landscape layouts retain readable text, visible controls and reduced-motion support.
 - A floating chapter console with an orbital reading indicator, numbered chapter dial and an expandable eight-chapter map.
 - Three original, locally hosted motion films in a sliding carousel with sequential playback, pause/resume, clip selection, swipe navigation and fullscreen controls.
 - A distinctive podcast listening room: oversized editorial typography, a tactile record sleeve and a keyboard-accessible source dial exploring articles, books and insights.
@@ -111,6 +130,7 @@ DM Sans is distributed through `@fontsource-variable/dm-sans` under the SIL Open
 - [app/features.css](./app/features.css): connected beam cards.
 - [app/listening-room.css](./app/listening-room.css): the distinct editorial podcast chapter.
 - [lib/beamhub.ts](./lib/beamhub.ts): sourced content, official destinations, course filtering and role suggestions.
+- [lib/seo.ts](./lib/seo.ts): shared production origin, URL validation and search descriptions.
 - [components/course-explorer.tsx](./components/course-explorer.tsx): catalogue controls and course cards.
 - [components/course-preview.tsx](./components/course-preview.tsx): shared course preview and single official course destination.
 - [components/modal.tsx](./components/modal.tsx): accessible native-dialog lifecycle, Escape dismissal and focus restoration.
@@ -122,6 +142,7 @@ DM Sans is distributed through `@fontsource-variable/dm-sans` under the SIL Open
 - [components/site-header.tsx](./components/site-header.tsx): floating chapter console and expanded map.
 - [components/illustrations.tsx](./components/illustrations.tsx): original, reusable SVG artwork.
 - [tests/catalog.test.mjs](./tests/catalog.test.mjs): native Node.js tests for catalogue behavior and content invariants.
+- [tests/seo.test.mjs](./tests/seo.test.mjs): production-origin validation and search-snippet checks.
 
 ## Validate
 
