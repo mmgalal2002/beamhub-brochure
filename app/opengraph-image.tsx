@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "BeamHub: Great minds. Brighter medicine.";
+export const alt = "BeamHub: radiation medicine courses, learning and community. Great minds. Brighter medicine.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -20,7 +20,7 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ display: "flex", fontSize: 38, fontWeight: 700 }}>
-          beamhub
+          BeamHub
           <span style={{ color: "#b44723", marginLeft: 12 }}>+</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 94, letterSpacing: "-5px", lineHeight: 1.05 }}>
@@ -28,7 +28,7 @@ export default function OpenGraphImage() {
           <span style={{ color: "#b44723" }}>Brighter medicine.</span>
         </div>
         <div style={{ display: "flex", fontSize: 23, color: "#586259" }}>
-          EXPERT-LED LEARNING / A GLOBAL COMMUNITY / SHARED POSSIBILITY
+          RADIATION MEDICINE / MEDICAL PHYSICS / A GLOBAL COMMUNITY
         </div>
         <div
           style={{
