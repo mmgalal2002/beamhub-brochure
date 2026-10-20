@@ -13,11 +13,6 @@ const dmSans = localFont({
       style: "normal",
       weight: "100 1000",
     },
-    {
-      path: "../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-italic.woff2",
-      style: "italic",
-      weight: "100 1000",
-    },
   ],
   variable: "--font-dm-sans",
   display: "swap",
