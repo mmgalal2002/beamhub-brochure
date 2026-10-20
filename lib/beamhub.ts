@@ -27,18 +27,11 @@ export const learningCategories = [
   { id: "protection", label: "Physics & protection" },
   { id: "engineering", label: "Engineering" },
   { id: "radiotherapy", label: "Planning & therapy" },
-  { id: "anatomy", label: "Anatomy" },
 ] as const;
 
 export type CategoryId = (typeof learningCategories)[number]["id"];
-export type CourseId =
-  | "shielding"
-  | "linac"
-  | "eclipse"
-  | "anatomy"
-  | "physics"
-  | "gamper";
-export type ArtworkKind = CourseId;
+export type CourseId = "shielding" | "linac" | "gamper";
+export type ArtworkKind = CourseId | "eclipse" | "anatomy" | "physics";
 
 export interface Course {
   id: CourseId;
@@ -107,6 +100,7 @@ export const courses: readonly Course[] = [
     tone: "peach",
     source: "https://www.beamhub.org/c/linac-engineering-course",
   },
+  /* Temporarily hidden from the featured catalogue.
   {
     id: "eclipse",
     title: "Eclipse Dosimetry & Planning",
@@ -173,6 +167,7 @@ export const courses: readonly Course[] = [
     tone: "blue",
     source: "https://www.beamhub.org/c/basic-physics",
   },
+  */
   {
     id: "gamper",
     title: "GAMPER Masterclass",
@@ -307,32 +302,32 @@ export const learnerPaths = [
     label: "Medical physicist",
     title: "From strong foundations to greater precision.",
     description:
-      "Explore shielding, advanced radiotherapy and the planning decisions that connect physics with practice.",
-    courseIds: ["shielding", "gamper", "eclipse"],
+      "Connect shielding design with precision radiotherapy and practical treatment delivery.",
+    courseIds: ["shielding", "gamper"],
   },
   {
     id: "radiotherapy",
     label: "Radiotherapy professional",
     title: "A new perspective on every plan.",
     description:
-      "Bring together treatment planning, image-based anatomy and precision radiotherapy in your next learning chapter.",
-    courseIds: ["eclipse", "anatomy", "gamper"],
+      "Explore precision radiotherapy alongside the protection principles that support safe treatment delivery.",
+    courseIds: ["gamper", "shielding"],
   },
   {
     id: "engineer",
     label: "Clinical engineer",
     title: "Get to know what makes the beam work.",
     description:
-      "Start with linac systems, revisit radiation fundamentals and explore the principles behind shielding design.",
-    courseIds: ["linac", "physics", "shielding"],
+      "Start with linac systems and see how shielding design supports safe operation.",
+    courseIds: ["linac", "shielding"],
   },
   {
     id: "student",
     label: "Student / curious mind",
     title: "Every expert starts with a little curiosity.",
     description:
-      "Take a first look at radiation physics, build your anatomy knowledge and discover how a linear accelerator works.",
-    courseIds: ["physics", "anatomy", "linac"],
+      "Get to know how a linear accelerator works, how shielding supports safe use and where precision radiotherapy fits.",
+    courseIds: ["linac", "shielding", "gamper"],
   },
 ] as const satisfies readonly {
   id: string;
